@@ -31,6 +31,10 @@ gemini -i "Read the `SOUL.md` file and follow instructions"
 - `MEMORY.md` / `EXAMPLE.MEMORY.md` ? persistent memory store.
 - `start.bat` / `run_bot.bat` ? simple launchers for the workspace and integrations.
 
+Note about EXAMPLE files
+
+- Files prefixed with `EXAMPLE.` (for example `EXAMPLE.SOUL.md` or `EXAMPLE.MEMORY.md`) are templates included in the repo so the real filenames can be listed in `.gitignore`. To activate a file locally, rename it to remove the `EXAMPLE.` prefix (for example, rename `EXAMPLE.SOUL.md` to `SOUL.md`). This keeps sensitive or environment-specific files ignored in git while allowing you to enable them locally.
+
 ## WhatsApp integration (optional)
 
 A minimal WhatsApp bot is included under `whatsapp-bot/` (optional). It uses Baileys and stores session files in `whatsapp-bot/auth_info_baileys/`. Keep those files private.
