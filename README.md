@@ -42,6 +42,16 @@ node index.js
 npm start
 ```
 
+## Gemini CLI
+
+This project works well with the Gemini CLI. On Windows you can use the bundled `start.bat` to run the workspace interactively with Gemini.
+
+Example `start.bat` contents:
+
+```bat
+gemini -i "Read the `SOUL.md` file and follow instructions"
+```
+
 First-time auth
 - On first run, the bot will prompt to scan a QR code in the terminal (Baileys flow). After scanning, session files will be saved under `auth_info_baileys/`.
 
