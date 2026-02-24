@@ -1,84 +1,48 @@
-# GeminiBrain
+# GeminiBrain ? Agentic Workspace
 
-Short description
+GeminiBrain is an agentic personal workspace designed to run with the Gemini CLI. It acts like a small autonomous assistant with short-term and persistent memory, tools, and lightweight integrations.
 
-GeminiBrain is a small personal assistant/workspace containing utilities, notes, and a WhatsApp integration for automated messaging and quick interactions. The repository groups scripts and docs for running local utilities and a WhatsApp bot.
+**Core idea:** run the repository with `gemini` and let the agent follow instructions in `SOUL.md`, consult its memory, and act using local utilities.
 
-## Project Structure
+**Key features**
+- Agentic workflow: uses interactive Gemini sessions to run tasks and follow high-level instructions.
+- Memory: the workspace stores notes and state (e.g., `MEMORY.md`, `EXAMPLE.MEMORY.md`) that the agent can consult and update.
+- Utilities: small scripts (RSS fetcher, launchers) and integrations to extend the agent's capabilities.
 
-- `fetch_rss.py`, `run_bot.bat`, `start.bat`, and various notes (SOUL, SKILL, MEMORY)
-- `whatsapp-bot/` ? WhatsApp integration and runtime files (see below)
+## Quick Start (Gemini CLI)
 
-## WhatsApp Feature
-
-The WhatsApp feature lives in the `whatsapp-bot` folder and provides a lightweight bot using Baileys (a WhatsApp Web API library). The directory contains `index.js`, `package.json`, and an `auth_info_baileys/` folder with saved credentials.
-
-High-level behavior:
-- Maintains session state in `whatsapp-bot/auth_info_baileys/` so re-authentication is usually not required.
-- `index.js` is the bot entry point that restores credentials and listens for messages/events.
-
-Important files:
-- `whatsapp-bot/index.js` ? bot entrypoint and main logic.
-- `whatsapp-bot/package.json` ? Node dependencies and scripts.
-- `whatsapp-bot/auth_info_baileys/` ? session files (keep private).
-
-## Setup
-
-Requirements
-- Node.js (LTS recommended)
-
-Install dependencies
-
-```bash
-cd whatsapp-bot
-npm install
-```
-
-Start the bot
-
-```bash
-node index.js
-# or, if package.json defines a start script:
-npm start
-```
-
-## Gemini CLI
-
-This project works well with the Gemini CLI. On Windows you can use the bundled `start.bat` to run the workspace interactively with Gemini.
-
-Example `start.bat` contents:
+1. Install and configure the Gemini CLI for your platform.
+2. From the project root run the included `start.bat` on Windows or invoke `gemini` directly:
 
 ```bat
 gemini -i "Read the `SOUL.md` file and follow instructions"
 ```
 
-First-time auth
-- On first run, the bot will prompt to scan a QR code in the terminal (Baileys flow). After scanning, session files will be saved under `auth_info_baileys/`.
+`start.bat` is a convenience launcher that invokes `gemini` in interactive mode and points it at the repository instructions.
 
-If you already have `auth_info_baileys/` files (this repo includes example/active files), the bot will restore the session automatically.
+## How the agent uses memory
 
-## Configuration
+- Persistent notes: store long-term facts or goals in `MEMORY.md` and `EXAMPLE.MEMORY.md`.
+- Short-term: the agent may write temporary notes or state while executing a session.
+- Design: keep entries concise and timestamped when useful; the agent will prefer structured, short facts.
 
-- Keep the contents of `whatsapp-bot/auth_info_baileys/` confidential ? they provide access to the WhatsApp session.
-- If you need to reset the session, stop the bot and remove the relevant files in `auth_info_baileys/`; the bot will produce a new QR code on next start.
+## Files of interest
+- `SOUL.md` ? the agent's top-level mission and behavior hints.
+- `MEMORY.md` / `EXAMPLE.MEMORY.md` ? persistent memory store.
+- `start.bat` / `run_bot.bat` ? simple launchers for the workspace and integrations.
 
-## Troubleshooting
+## WhatsApp integration (optional)
 
-- Bot doesn't connect: ensure Node.js is installed and internet is available.
-- QR not accepted: remove stale auth files and re-run to re-authenticate.
-- Check `whatsapp-bot/index.js` logs for errors and missing env vars.
+A minimal WhatsApp bot is included under `whatsapp-bot/` (optional). It uses Baileys and stores session files in `whatsapp-bot/auth_info_baileys/`. Keep those files private.
 
-## Security & Privacy
+To run the bot (optional):
 
-- Do not commit or publish `auth_info_baileys/` files to public repos. Treat them like credentials.
-- Rotate sessions by re-authenticating on a new device if you suspect compromise.
-
-## License
-
-This repository does not include a license file. Add one if you plan to reuse or publish the code.
+```bash
+cd whatsapp-bot
+npm install
+node index.js
+```
 
 ---
 
-If you want, I can also:
-- Add example `npm` scripts to `whatsapp-bot/package.json`.
-- Add a minimal `README` inside `whatsapp-bot/` with more details.
+If you'd like, I can also add a focused `whatsapp-bot/README.md`, example `npm` scripts, or make the `start.bat` more configurable.
