@@ -1,0 +1,1 @@
+gemini -i "Read the `SOUL.md` file and follow instructions"

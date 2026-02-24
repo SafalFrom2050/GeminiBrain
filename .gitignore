@@ -1,0 +1,7 @@
+
+# Ignore WhatsApp Baileys auth data
+/whatsapp-bot/auth_info_baileys/
+
+# Ignore SOUL.md
+SOUL.md
+MEMORY.md
